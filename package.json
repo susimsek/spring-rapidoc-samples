@@ -10,7 +10,10 @@
     "webapp:build:prod": "webpack --config webpack/webpack.prod.js --env stats=minimal",
     "webpack-dev-server": "webpack serve",
     "clean-www": "rimraf target/classes/static/*",
-    "backend:start": "./mvnw -Dskip.installnodenpm -Dskip.npm"
+    "backend:start": "./mvnw -Dskip.installnodenpm -Dskip.npm",
+    "java:jar": "./mvnw -ntp verify -DskipTests --batch-mode",
+    "java:jar:dev": "npm run java:jar -- -Plocal",
+    "java:jar:prod": "npm run java:jar -- -Pprod"
   },
   "dependencies": {
     "bootstrap": "^5.3.3",
