@@ -10,7 +10,7 @@ on:
       - main
 
 jobs:
-  bulid:
+  build:
     runs-on: ubuntu-latest
     defaults:
       run:
