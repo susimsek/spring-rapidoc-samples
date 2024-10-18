@@ -32,10 +32,10 @@ jobs:
           version: 'latest'
 
       # Set up Node 16
-      - name: Set up Node 16
+      - name: Set up Node 20
         uses: actions/setup-node@v4
         with:
-          node-version: 16.14.2
+          node-version: 20.17.0
           cache: 'npm'
 
       # Set up JDK 22 with GraalVM
