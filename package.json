@@ -1,0 +1,37 @@
+{
+  "name": "spring-rapidoc-samples",
+  "version": "1.0.0",
+  "description": "Spring Boot and React full-stack application",
+  "scripts": {
+    "start": "npm run webapp:dev",
+    "build": "npm run webapp:prod --",
+    "webapp:dev": "npm run clean-www && npm run webpack-dev-server -- --config webpack/webpack.dev.js --env stats=minimal",
+    "webapp:prod": "npm run clean-www && npm run webapp:build:prod",
+    "webapp:build:prod": "webpack --config webpack/webpack.prod.js --env stats=minimal",
+    "webpack-dev-server": "webpack serve",
+    "clean-www": "rimraf target/classes/static/*",
+    "backend:start": "./mvnw -Dskip.installnodenpm -Dskip.npm"
+  },
+  "dependencies": {
+    "bootstrap": "^5.3.3",
+    "rapidoc": "^9.3.8",
+    "react": "^18.0.0",
+    "react-bootstrap": "^2.10.5",
+    "react-dom": "^18.0.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.16.5",
+    "@babel/preset-env": "^7.16.5",
+    "@babel/preset-react": "^7.16.5",
+    "babel-loader": "^8.2.3",
+    "copy-webpack-plugin": "12.0.2",
+    "css-loader": "^6.5.1",
+    "html-webpack-plugin": "^5.5.0",
+    "rimraf": "^3.0.2",
+    "style-loader": "^3.3.1",
+    "webpack": "^5.65.0",
+    "webpack-cli": "^4.9.1",
+    "webpack-dev-server": "^4.7.3",
+    "webpack-merge": "6.0.1"
+  }
+}
