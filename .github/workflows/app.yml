@@ -54,7 +54,7 @@ jobs:
         run: echo "BRANCH_NAME=$(echo ${GITHUB_REF} | awk -F'/' '{print $3}')" >> $GITHUB_ENV
 
       # Print Java, Maven, and UPX versions
-      - name: Print Java, Maven, Node Version
+      - name: Print Java, Maven, Node, Npm Version
         run: |
           echo "GRAALVM_HOME: $GRAALVM_HOME"
           echo "JAVA_HOME: $JAVA_HOME"
@@ -62,6 +62,7 @@ jobs:
           native-image --version
           mvn --version
           node -v
+          npm --version
 
       # Configure Maven for GitHub Packages
       - name: Configure Maven for GitHub Packages
