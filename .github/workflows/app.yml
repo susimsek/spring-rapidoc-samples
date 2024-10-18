@@ -31,6 +31,13 @@ jobs:
         with:
           version: 'latest'
 
+      # Set up Node 16
+      - name: Set up Node 16
+        uses: actions/setup-node@v4
+        with:
+          node-version: 16.14.2
+          cache: 'npm'
+
       # Set up JDK 22 with GraalVM
       - name: Set up JDK 22 with GraalVM
         uses: graalvm/setup-graalvm@v1
@@ -47,13 +54,14 @@ jobs:
         run: echo "BRANCH_NAME=$(echo ${GITHUB_REF} | awk -F'/' '{print $3}')" >> $GITHUB_ENV
 
       # Print Java, Maven, and UPX versions
-      - name: Print Java, Maven Version
+      - name: Print Java, Maven, Node Version
         run: |
           echo "GRAALVM_HOME: $GRAALVM_HOME"
           echo "JAVA_HOME: $JAVA_HOME"
           java --version
           native-image --version
           mvn --version
+          node -v
 
       # Configure Maven for GitHub Packages
       - name: Configure Maven for GitHub Packages
@@ -68,6 +76,10 @@ jobs:
                     </server>
                   </servers>
                 </settings>' > ~/.m2/settings.xml
+
+      # Install node packages
+      - name: Install node.js packages
+        run: npm install
 
       # Download dependencies
       - name: Download Dependencies
@@ -84,7 +96,7 @@ jobs:
 
       # Run tests
       - name: Run Tests
-        run: mvn -ntp -Pprod  clean verify
+        run: mvn -ntp -Pprod clean verify
 
       # Run quality analysis
       - name: Quality Analysis
