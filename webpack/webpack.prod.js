@@ -1,8 +1,11 @@
 const webpackMerge = require('webpack-merge').merge;
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const path = require('path');
+const TerserPlugin = require('terser-webpack-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const commonConfig = require("./webpack.common");
 
-module.exports = async () =>
+module.exports = async options =>
   webpackMerge(await commonConfig(), {
   entry: './src/main/webapp/src/index.js',
   mode: 'production',
@@ -25,9 +28,43 @@ module.exports = async () =>
       },
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader']
+        use: [MiniCssExtractPlugin.loader, 'style-loader', 'css-loader']
       }
     ]
   },
-    plugins: []
+    optimization: {
+      minimizer: [
+        new TerserPlugin({
+          terserOptions: {
+            parse: {
+              ecma: 8,
+            },
+            compress: {
+              ecma: 5,
+              warnings: false,
+              comparisons: false,
+              inline: 2,
+            },
+            mangle: {
+              safari10: true,
+            },
+            output: {
+              ecma: 5,
+              comments: false,
+              ascii_only: true,
+            },
+          },
+          parallel: true,
+        }),
+        new CssMinimizerPlugin({
+          parallel: true,
+        }),
+      ],
+    },
+    plugins: [
+      new MiniCssExtractPlugin({
+        filename: 'content/[name].[contenthash].css',
+        chunkFilename: 'content/[name].[chunkhash].css',
+      }),
+    ]
   });

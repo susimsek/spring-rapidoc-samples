@@ -1,7 +1,10 @@
 import React, { useEffect } from 'react';
-import 'rapidoc'; // Importing RapiDoc from CDN
+import 'rapidoc';
+import {useTranslation} from "react-i18next"; // Importing RapiDoc from CDN
 
 const RapiDocComponent = ({ theme, specUrl }) => {
+  const { t } = useTranslation();
+
   useEffect(() => {
     const rapiDoc = document.querySelector('rapi-doc');
     if (rapiDoc) {
@@ -25,7 +28,7 @@ const RapiDocComponent = ({ theme, specUrl }) => {
       bg-color={theme === "light" ? "#FFFFFF" : "#000000"}
       text-color={theme === "light" ? "#212121" : "#FFFFFF"}
       font-family="Roboto, Arial, sans-serif"
-      heading-text="API Documentation"
+      heading-text={t('rapidoc.headingText')}
       show-info="true"
       show-components="true"
       allow-authentication="false"

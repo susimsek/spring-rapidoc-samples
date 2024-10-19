@@ -1,0 +1,9 @@
+{
+  "global": {
+    "home": "Home",
+    "selectApi": "Select API",
+    "lightMode": "Light Mode",
+    "darkMode": "Dark Mode",
+    "navbarHeadingText": "API Documentation"
+  }
+}

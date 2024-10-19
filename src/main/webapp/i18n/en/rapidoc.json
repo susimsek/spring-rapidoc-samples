@@ -1,0 +1,12 @@
+{
+  "rapidoc": {
+    "welcome": "Welcome to the API Documentation",
+    "selectApi": "Select API",
+    "primaryColor": "Primary Color",
+    "secondaryColor": "Secondary Color",
+    "components": "API Components",
+    "schema": "Schema",
+    "info": "API Information",
+    "headingText": "API Documentation"
+  }
+}

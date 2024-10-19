@@ -2,6 +2,7 @@ require('webpack');
 const { merge } = require('webpack-merge');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MergeJsonWebpackPlugin = require('merge-jsons-webpack-plugin');
 
 module.exports = async () => {
 
@@ -23,7 +24,17 @@ module.exports = async () => {
           chunksSortMode: 'auto',
           inject: 'body',
           base: '/',
-        })
+        }),
+        new MergeJsonWebpackPlugin({
+          output: {
+            groupBy: [
+              {
+                pattern: './src/main/webapp/i18n/en/*.json', // Match all English JSON files
+                fileName: './i18n/en.json', // Output a merged file at this location
+              }
+            ],
+          },
+        }),
       ],
     },
   );
