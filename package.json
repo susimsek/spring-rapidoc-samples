@@ -10,7 +10,6 @@
     "webapp:build:prod": "webpack --config webpack/webpack.prod.js --env stats=minimal",
     "webpack-dev-server": "webpack serve",
     "clean-www": "rimraf target/classes/static/*",
-    "backend:start": "./mvnw -Dskip.installnodenpm -Dskip.npm",
     "java:jar": "./mvnw -ntp verify -DskipTests --batch-mode",
     "java:jar:dev": "npm run java:jar -- -Plocal",
     "java:jar:prod": "npm run java:jar -- -Pprod"
@@ -36,5 +35,8 @@
     "webpack-cli": "^4.9.1",
     "webpack-dev-server": "^4.7.3",
     "webpack-merge": "6.0.1"
-  }
+  },
+  "cacheDirectories": [
+    "node_modules"
+  ]
 }
