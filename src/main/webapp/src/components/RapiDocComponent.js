@@ -21,11 +21,11 @@ const RapiDocComponent = ({ theme, specUrl }) => {
       render-style="read"
       primary-color="#4CAF50"
       secondary-color="#FF9800"
-      nav-bg-color={theme === "light" ? "#F5F5F5" : "#333"}
+      nav-bg-color={theme === "light" ? "#F5F5F5" : "#2a2b2c"}
       nav-text-color={theme === "light" ? "#333" : "#FFFFFF"}
       nav-hover-bg-color={theme === "light" ? "#E0E0E0" : "#555"}
       nav-accent-color="#4CAF50"
-      bg-color={theme === "light" ? "#FFFFFF" : "#000000"}
+      bg-color={theme === "light" ? "#FFFFFF" : "#333"}
       text-color={theme === "light" ? "#212121" : "#FFFFFF"}
       font-family="Roboto, Arial, sans-serif"
       heading-text={t('rapidoc.headingText')}

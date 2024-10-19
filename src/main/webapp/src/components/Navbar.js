@@ -5,13 +5,14 @@ import { useTranslation } from 'react-i18next'; // Import translation hook
 const NavigationBar = ({ theme, handleThemeToggle, specUrl, handleApiChange }) => {
   const { t } = useTranslation(); // Initialize translation hook
 
+  // Navbar background color based on theme
+  const navbarBgColor = theme === "light" ? "#F1F1F1" : "#2a2b2c";
+
   return (
     <Navbar
       collapseOnSelect
       expand="lg"
-      bg={theme === "light" ? "light" : "dark"}
-      variant={theme === "light" ? "light" : "dark"}
-      style={{ paddingLeft: '10px', paddingRight: '10px' }}
+      style={{ backgroundColor: navbarBgColor, paddingLeft: '10px', paddingRight: '10px' }}
     >
       <Container fluid style={{ paddingLeft: '0', paddingRight: '0' }}>
         <Navbar.Brand href="/" className="d-flex align-items-center" style={{ marginLeft: '0' }}>
