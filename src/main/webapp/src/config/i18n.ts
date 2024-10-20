@@ -15,5 +15,3 @@ i18n
       escapeValue: false, // React already escapes by default
     },
   });
-
-export default i18n;
