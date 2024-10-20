@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import Navbar from './components/Navbar';
 import RapiDocComponent from './components/RapiDocComponent';
 
-const App = () => {
-  const [theme, setTheme] = useState("light"); // Light theme as default
-  const [specUrl, setSpecUrl] = useState("/v3/api-docs"); // Default API URL
+const App: React.FC = () => {
+  const [theme, setTheme] = useState<string>("light"); // Light theme as default
+  const [specUrl, setSpecUrl] = useState<string>("/v3/api-docs"); // Default API URL
 
-  const handleApiChange = (e) => {
+  const handleApiChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSpecUrl(e.target.value);
   };
 

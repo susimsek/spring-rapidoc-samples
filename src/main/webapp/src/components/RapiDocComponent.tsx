@@ -1,8 +1,13 @@
 import React, { useEffect } from 'react';
 import 'rapidoc';
-import {useTranslation} from "react-i18next"; // Importing RapiDoc from CDN
+import { useTranslation } from "react-i18next"; // Importing RapiDoc from CDN
 
-const RapiDocComponent = ({ theme, specUrl }) => {
+interface RapiDocComponentProps {
+  theme: string;
+  specUrl: string;
+}
+
+const RapiDocComponent: React.FC<RapiDocComponentProps> = ({ theme, specUrl }) => {
   const { t } = useTranslation();
 
   useEffect(() => {

@@ -1,9 +1,16 @@
 import React from 'react';
-import { Navbar, Nav, Container, Form, FormControl, Image, FormLabel } from 'react-bootstrap';
-import { useTranslation } from 'react-i18next'; // Import translation hook
+import { Navbar, Nav, Container, Form, Image, FormLabel } from 'react-bootstrap';
+import { useTranslation } from 'react-i18next';
 
-const NavigationBar = ({ theme, handleThemeToggle, specUrl, handleApiChange }) => {
-  const { t } = useTranslation(); // Initialize translation hook
+interface NavigationBarProps {
+  theme: string;
+  handleThemeToggle: () => void;
+  specUrl: string;
+  handleApiChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+}
+
+const NavigationBar: React.FC<NavigationBarProps> = ({ theme, handleThemeToggle, specUrl, handleApiChange }) => {
+  const { t } = useTranslation();
 
   // Navbar background color based on theme
   const navbarBgColor = theme === "light" ? "#F1F1F1" : "#2a2b2c";
@@ -16,30 +23,28 @@ const NavigationBar = ({ theme, handleThemeToggle, specUrl, handleApiChange }) =
     >
       <Container fluid style={{ paddingLeft: '0', paddingRight: '0' }}>
         <Navbar.Brand href="/" className="d-flex align-items-center" style={{ marginLeft: '0' }}>
-          {/* Restored logo */}
           <Image
             src="/content/images/logo.png"
             alt="Logo"
             style={{ width: '36px', height: '36px', marginRight: '10px' }}
           />
           <span style={{ fontSize: '18px', color: theme === "light" ? "#333" : "#FFF" }}>
-            {t('global.navbarHeadingText')} {/* Updated key for API Documentation */}
+            {t('global.navbarHeadingText')}
           </span>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="ms-auto d-flex flex-column flex-lg-row align-items-lg-center justify-content-end w-100 w-lg-auto">
             <Nav.Link href="/" className="mb-2 mb-lg-0" style={{ color: theme === "light" ? "#333" : "#FFF" }}>
-              {t('global.home')} {/* Translation for Home */}
+              {t('global.home')}
             </Nav.Link>
 
             {/* API Select */}
             <Form.Group className="mb-2 mb-lg-0 d-flex flex-row align-items-center ms-lg-2">
               <FormLabel className="me-2 mb-0" style={{ color: theme === "light" ? "#333" : "#FFF", whiteSpace: 'nowrap' }}>
-                {t('global.selectApi')} {/* Translation for Select API */}
+                {t('global.selectApi')}
               </FormLabel>
-              <FormControl
-                as="select"
+              <Form.Select
                 value={specUrl}
                 onChange={handleApiChange}
                 style={{
@@ -53,7 +58,7 @@ const NavigationBar = ({ theme, handleThemeToggle, specUrl, handleApiChange }) =
                 }}
               >
                 <option value="/v3/api-docs">Core API</option>
-              </FormControl>
+              </Form.Select>
             </Form.Group>
 
             {/* Theme Toggle Switch */}
