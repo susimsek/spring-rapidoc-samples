@@ -2,16 +2,39 @@ require('webpack');
 const { merge } = require('webpack-merge');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const MergeJsonWebpackPlugin = require('merge-jsons-webpack-plugin');
+
+const path = require('path');
 
 module.exports = async () => {
 
   return merge(
     {
+      resolve: {
+        extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
+        modules: ['node_modules'],
+      },
+      module: {
+        rules: [
+          {
+            test: /\.tsx?$/,
+            exclude: /node_modules/,
+            use: {
+              loader: 'ts-loader',
+              options: {
+                transpileOnly: true,
+                happyPackMode: true,
+              },
+            },
+          },
+        ],
+      },
       stats: {
         children: false,
       },
       plugins: [
+        new ForkTsCheckerWebpackPlugin(),
         new CopyWebpackPlugin({
           patterns: [
             { from: './src/main/webapp/content/', to: 'content/' },

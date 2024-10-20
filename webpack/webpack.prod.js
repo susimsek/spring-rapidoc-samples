@@ -7,7 +7,7 @@ const commonConfig = require("./webpack.common");
 
 module.exports = async options =>
   webpackMerge(await commonConfig(), {
-  entry: './src/main/webapp/src/index.js',
+  entry: './src/main/webapp/src/index.tsx',
   mode: 'production',
   output: {
     path: path.resolve(__dirname, '../target/classes/static'),
