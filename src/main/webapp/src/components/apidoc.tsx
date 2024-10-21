@@ -7,7 +7,7 @@ interface ApiDocProps {
   specUrl: string;
 }
 
-const ApiDoc: React.FC<ApiDocProps> = ({ specUrl }) => {
+const Apidoc: React.FC<ApiDocProps> = ({ specUrl }) => {
   const { t } = useTranslation();
 
   // Get the theme from Redux store
@@ -43,4 +43,4 @@ const ApiDoc: React.FC<ApiDocProps> = ({ specUrl }) => {
   );
 };
 
-export default ApiDoc;
+export default Apidoc;

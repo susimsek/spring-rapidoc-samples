@@ -1,6 +1,6 @@
 import React from 'react';
-import Navbar from './components/Navbar';
-import ApiDoc from './components/ApiDoc';
+import Navbar from './components/navbar';
+import Apidoc from './components/apidoc';
 
 const App: React.FC = () => {
   const [specUrl, setSpecUrl] = React.useState<string>('/v3/api-docs');
@@ -20,7 +20,7 @@ const App: React.FC = () => {
       }}
     >
       <Navbar specUrl={specUrl} handleApiChange={handleApiChange} />
-      <ApiDoc specUrl={specUrl} />
+      <Apidoc specUrl={specUrl} />
     </div>
   );
 };
