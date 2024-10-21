@@ -10,14 +10,6 @@ interface RapiDocComponentProps {
 const RapiDocComponent: React.FC<RapiDocComponentProps> = ({ theme, specUrl }) => {
   const { t } = useTranslation();
 
-  useEffect(() => {
-    const rapiDoc = document.querySelector('rapi-doc');
-    if (rapiDoc) {
-      rapiDoc.setAttribute('spec-url', specUrl);
-      rapiDoc.setAttribute('theme', theme);
-    }
-  }, [specUrl, theme]);
-
   return (
     <rapi-doc
       spec-url={specUrl}
