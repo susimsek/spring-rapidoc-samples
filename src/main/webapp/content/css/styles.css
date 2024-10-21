@@ -64,3 +64,9 @@
 .switch-dark {
   color: #fff;
 }
+
+.rapidoc-container {
+  height: 100%;
+  width: 100%;
+}
+

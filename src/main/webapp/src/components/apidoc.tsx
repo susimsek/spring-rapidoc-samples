@@ -38,7 +38,7 @@ const Apidoc: React.FC<ApiDocProps> = ({ specUrl }) => {
       regular-font-size="15px"
       mono-font-size="13px"
       max-containers={2}
-      style={{ height: '100%', width: '100%' }}
+      className="rapidoc-container"
     />
   );
 };
