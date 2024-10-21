@@ -21,27 +21,24 @@ const NavigationBar: React.FC<NavigationBarProps> = ({ specUrl, handleApiChange 
     dispatch(toggleTheme());
   };
 
-  // Navbar background color based on theme
-  const navbarBgColor = theme === 'light' ? '#F1F1F1' : '#2a2b2c';
-
   return (
     <BootstrapNavbar
+      className={`${theme === 'light' ? 'navbar-light' : 'navbar-dark'} navbar`}
       collapseOnSelect
       expand="lg"
-      style={{ backgroundColor: navbarBgColor, paddingLeft: '10px', paddingRight: '10px' }}
     >
       <Container fluid style={{ paddingLeft: '0', paddingRight: '0' }}>
-        <BootstrapNavbar.Brand href="/" className="d-flex align-items-center" style={{ marginLeft: '0' }}>
+        <BootstrapNavbar.Brand href="/" className="d-flex align-items-center" style={{marginLeft: '0'}}>
           <Image
             src="/content/images/logo.png"
             alt="Logo"
-            style={{ width: '36px', height: '36px', marginRight: '10px' }}
+            className="logo-image"
           />
-          <span style={{ fontSize: '18px', color: theme === 'light' ? '#333' : '#FFF' }}>
+          <span className={theme === 'light' ? 'text-dark' : 'text-light'} style={{fontSize: '18px'}}>
             {t('global.navbarHeadingText')}
           </span>
         </BootstrapNavbar.Brand>
-        <BootstrapNavbar.Toggle aria-controls="responsive-navbar-nav" />
+        <BootstrapNavbar.Toggle aria-controls="responsive-navbar-nav"/>
         <BootstrapNavbar.Collapse id="responsive-navbar-nav">
           <Nav className="ms-auto d-flex flex-column flex-lg-row align-items-lg-center justify-content-end w-100 w-lg-auto">
             <Nav.Link href="/" className="mb-2 mb-lg-0" style={{ color: theme === 'light' ? '#333' : '#FFF' }}>
@@ -51,23 +48,15 @@ const NavigationBar: React.FC<NavigationBarProps> = ({ specUrl, handleApiChange 
             {/* API Select */}
             <Form.Group className="mb-2 mb-lg-0 d-flex flex-row align-items-center ms-lg-2">
               <FormLabel
-                className="me-2 mb-0"
-                style={{ color: theme === 'light' ? '#333' : '#FFF', whiteSpace: 'nowrap' }}
+                className={`me-2 mb-0 ${theme === 'light' ? 'text-dark' : 'text-light'}`}
+                style={{ whiteSpace: 'nowrap' }}
               >
                 {t('global.selectApi')}
               </FormLabel>
               <Form.Select
                 value={specUrl}
                 onChange={handleApiChange}
-                style={{
-                  width: '150px',
-                  padding: '5px 10px',
-                  backgroundColor: theme === 'light' ? '#FFF' : '#333',
-                  color: theme === 'light' ? '#333' : '#FFF',
-                  border: theme === 'light' ? '1px solid #ccc' : '1px solid #555',
-                  borderRadius: '5px',
-                  margin: '0',
-                }}
+                className={`api-select ${theme === 'light' ? 'select-light' : 'select-dark'}`}
               >
                 <option value="/v3/api-docs">Core API</option>
               </Form.Select>
@@ -80,11 +69,7 @@ const NavigationBar: React.FC<NavigationBarProps> = ({ specUrl, handleApiChange 
               label={theme === 'light' ? t('global.lightMode') : t('global.darkMode')}
               checked={theme === 'dark'}
               onChange={handleThemeToggle}
-              className="ms-lg-2 mt-2 mt-lg-0"
-              style={{
-                color: theme === 'light' ? '#333' : '#FFF',
-                width: 'auto',
-              }}
+              className={`theme-switch ${theme === 'light' ? 'switch-light' : 'switch-dark'} ms-lg-2 mt-2 mt-lg-0`}
             />
           </Nav>
         </BootstrapNavbar.Collapse>

@@ -11,16 +11,9 @@ const App: React.FC = () => {
   };
 
   return (
-    <div
-      style={{
-        height: '100vh',
-        width: '100vw',
-        display: 'flex',
-        flexDirection: 'column',
-      }}
-    >
-      <Navbar specUrl={specUrl} handleApiChange={handleApiChange} />
-      <Apidoc specUrl={specUrl} />
+    <div className="app-container">
+      <Navbar specUrl={specUrl} handleApiChange={handleApiChange}/>
+      <Apidoc specUrl={specUrl}/>
     </div>
   );
 };
