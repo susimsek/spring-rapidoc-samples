@@ -1,12 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-export type ThemeState = 'light' | 'dark';
-
-interface ThemeSliceState {
-  theme: ThemeState;
+// State interface directly uses the union type
+interface ThemeState {
+  theme: 'light' | 'dark';
 }
 
-const initialState: ThemeSliceState = {
+const initialState: ThemeState = {
   theme: 'light',
 };
 
@@ -17,7 +16,7 @@ const themeSlice = createSlice({
     toggleTheme: (state) => {
       state.theme = state.theme === 'light' ? 'dark' : 'light';
     },
-    setTheme: (state, action: PayloadAction<ThemeState>) => {
+    setTheme: (state, action: PayloadAction<'light' | 'dark'>) => {
       state.theme = action.payload;
     },
   },
