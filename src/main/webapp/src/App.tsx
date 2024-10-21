@@ -1,10 +1,11 @@
 import React from 'react';
 import Navbar from './components/Navbar';
-import RapiDocComponent from './components/RapiDocComponent';
+import ApiDoc from './components/ApiDoc';
 
 const App: React.FC = () => {
   const [specUrl, setSpecUrl] = React.useState<string>('/v3/api-docs');
 
+  // Handler for changing the API specification URL
   const handleApiChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSpecUrl(e.target.value);
   };
@@ -19,7 +20,7 @@ const App: React.FC = () => {
       }}
     >
       <Navbar specUrl={specUrl} handleApiChange={handleApiChange} />
-      <RapiDocComponent specUrl={specUrl} />
+      <ApiDoc specUrl={specUrl} />
     </div>
   );
 };

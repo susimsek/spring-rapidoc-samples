@@ -3,14 +3,14 @@ import 'rapidoc';
 import { useTranslation } from 'react-i18next';
 import { useAppSelector } from '../config/store';
 
-interface RapiDocComponentProps {
+interface ApiDocProps {
   specUrl: string;
 }
 
-const RapiDocComponent: React.FC<RapiDocComponentProps> = ({ specUrl }) => {
+const ApiDoc: React.FC<ApiDocProps> = ({ specUrl }) => {
   const { t } = useTranslation();
 
-  // Redux store'dan temayı alın
+  // Get the theme from Redux store
   const theme = useAppSelector((state) => state.theme.theme);
 
   return (
@@ -43,4 +43,4 @@ const RapiDocComponent: React.FC<RapiDocComponentProps> = ({ specUrl }) => {
   );
 };
 
-export default RapiDocComponent;
+export default ApiDoc;

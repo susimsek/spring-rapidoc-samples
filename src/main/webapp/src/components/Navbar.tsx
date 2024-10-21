@@ -13,10 +13,10 @@ const NavigationBar: React.FC<NavigationBarProps> = ({ specUrl, handleApiChange 
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
 
-  // Redux store'dan temayı alın
+  // Get the theme from Redux store
   const theme = useAppSelector((state) => state.theme.theme);
 
-  // Tema değiştirme fonksiyonunu tanımlayın
+  // Function to toggle the theme
   const handleThemeToggle = () => {
     dispatch(toggleTheme());
   };
