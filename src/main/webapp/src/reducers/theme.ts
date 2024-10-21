@@ -1,5 +1,3 @@
-// src/reducers/theme.ts
-
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface ThemeState {
@@ -17,6 +15,15 @@ const getInitialTheme = (): 'light' | 'dark' => {
   }
 };
 
+// Function to save the theme to localStorage
+const saveThemeToLocalStorage = (theme: 'light' | 'dark') => {
+  try {
+    localStorage.setItem('theme', theme);
+  } catch (error) {
+    console.error('Error saving theme to localStorage', error);
+  }
+};
+
 // Set the initial state using the value from localStorage
 const initialState: ThemeState = {
   theme: getInitialTheme(),
@@ -30,21 +37,13 @@ const themeSlice = createSlice({
     toggleTheme: (state) => {
       state.theme = state.theme === 'light' ? 'dark' : 'light';
       // Save the updated theme to localStorage
-      try {
-        localStorage.setItem('theme', state.theme);
-      } catch (error) {
-        console.error('Error saving theme to localStorage', error);
-      }
+      saveThemeToLocalStorage(state.theme);
     },
     // Reducer to set the theme explicitly
     setTheme: (state, action: PayloadAction<'light' | 'dark'>) => {
       state.theme = action.payload;
       // Save the updated theme to localStorage
-      try {
-        localStorage.setItem('theme', state.theme);
-      } catch (error) {
-        console.error('Error saving theme to localStorage', error);
-      }
+      saveThemeToLocalStorage(state.theme);
     },
   },
 });
