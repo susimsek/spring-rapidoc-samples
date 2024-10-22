@@ -1,6 +1,7 @@
 const webpackMerge = require('webpack-merge').merge;
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 const path = require('path');
+const sass = require('sass');
 
 const commonConfig = require('./webpack.common.js');
 
@@ -42,8 +43,21 @@ module.exports = async options =>
         }
       },
       {
-        test: /\.css$/,
-        use: ['style-loader', 'css-loader']
+        test: /\.(sa|sc|c)ss$/,
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: { url: false },
+          },
+          {
+            loader: 'postcss-loader',
+          },
+          {
+            loader: 'sass-loader',
+            options: { implementation: sass },
+          },
+        ],
       }
     ]
   },

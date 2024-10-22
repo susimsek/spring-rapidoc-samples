@@ -4,6 +4,7 @@ const path = require('path');
 const TerserPlugin = require('terser-webpack-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const commonConfig = require("./webpack.common");
+const sass = require('sass');
 
 module.exports = async options =>
   webpackMerge(await commonConfig(), {
@@ -27,8 +28,26 @@ module.exports = async options =>
         }
       },
       {
-        test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader, 'style-loader', 'css-loader']
+        test: /\.(sa|sc|c)ss$/,
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              publicPath: '../',
+            },
+          },
+          {
+            loader: 'css-loader',
+            options: { url: false },
+          },
+          {
+            loader: 'postcss-loader',
+          },
+          {
+            loader: 'sass-loader',
+            options: { implementation: sass },
+          },
+        ],
       }
     ]
   },
